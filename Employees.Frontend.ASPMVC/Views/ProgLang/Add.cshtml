@@ -1,0 +1,20 @@
+﻿@model NewProgLang
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>AddEmployee</title>
+    </head>
+    <body>
+        @using(Html.BeginForm("Add", "ProgLang", FormMethod.Post))
+        {
+            <label asp-for = "Name">Department Name</label>
+            <input class="form-control" asp-for = "Name" />
+            <input type="submit" value="Добавить отдел"/>
+        }
+    </body>
+</html>

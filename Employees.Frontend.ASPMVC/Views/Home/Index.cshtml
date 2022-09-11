@@ -1,0 +1,33 @@
+﻿@model Employees.Frontend.ASPMVC.Models.LoginModel
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Employees.Frontend.ASPMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="text-center row justify-content-center" >
+        <form asp-action="Login">
+            <div asp-validation-summary="All">
+                <div class="form-group">
+                    <label asp-for="Login">Login</label>
+                    <input class="form-control maxlength="30"  asp-for="Login" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input class="form-control" maxlength="30" asp-for="Password" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login"/>
+                </div>
+            </div>
+        </form>
+        <a class="row justify-content-center" asp-action="Registration">Зарегистрироваться</a>
+    </div>
+
+</body>

@@ -1,0 +1,85 @@
+﻿@model PageEmployees
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Employees</title>
+        <style type="text/css">
+           BODY {
+            background: white; /* Цвет фона веб-страницы */
+           }
+           TABLE {
+            width: 300px; /* Ширина таблицы */
+            border-collapse: collapse; /* Убираем двойные линии между ячейками */
+            border: 2px solid white; /* Прячем рамку вокруг таблицы */
+           }
+           TD, TH {
+            padding: 3px; /* Поля вокруг содержимого таблицы */
+            border: 1px solid black; /* Параметры рамки */
+            text-align: left; /* Выравнивание по левому краю */
+            }
+  </style>
+    </head>
+    <body>
+        <h2>Список сотрудников</h2>
+        
+    @if (ViewBag.Role != "Admin") 
+    {
+        <a asp-action="AddEmployee" asp-route-departmentId="departmentId">Добавить cотрудника в "Департамент"</a>
+    }
+    else
+    {
+        <a asp-action="AddEmployee">Добавить cотрудника</a>
+        <a asp-controller = "Department" asp-action="Add">Добавить отдел</a>
+        <a asp-controller = "ProgLang" asp-action="Add">Добавить язык</a>
+    }
+    <table>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Возраст</th>
+                    <th>Отдел</th>
+                    <th>Язык</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var employee in Model.Employees)
+                {
+                    <tr>
+                        <td>@employee.Name</td>
+                        <td>@employee.Surname</td>
+                        <td>@employee.Age</td>
+                        <td>@employee.Department.Name</td>
+                        <td>@employee.ProgLang.Name</td>
+                        <td>
+                        @using(Html.BeginForm("Delete", "Employee", FormMethod.Post))
+                        {
+                            <input type="hidden" name="Id" value="@employee.Id"/>
+                            <input type="submit" value="Удалить"/>
+                        }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form asp-action="ReadAll">
+            <div asp-validation-summary="All">
+                <div class="form-group">
+                    <label asp-for = "CurrentPage">page</label>
+                    <input class="form-control" asp-for = "CurrentPage" />
+                    <p>/@Model.Pages</p>
+                </div>
+                <div class="text-center">
+                    <button class = "btn btn-primary" type = "submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

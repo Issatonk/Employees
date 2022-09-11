@@ -1,0 +1,22 @@
+﻿@model NewDepartment
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>AddEmployee</title>
+    </head>
+    <body>
+        @using(Html.BeginForm("Add", "Department", FormMethod.Post))
+        {
+            <label asp-for = "Name">Department Name</label>
+            <input class="form-control" asp-for = "Name" />
+            <label asp-for = "Floor">Floor</label>
+            <input class="form-control" asp-for = "Floor" />
+            <input type="submit" value="Добавить отдел"/>
+        }
+    </body>
+</html>
