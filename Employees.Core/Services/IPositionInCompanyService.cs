@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Employees.Core.Repositories
+namespace Employees.Core.Services
 {
-    public interface IPositionInCompanyRepository
+    public interface IPositionInCompanyService
     {
-        Task<IEnumerable<PositionInCompany>> GetAll();
+        Task<int> Create(PositionInCompany progLang);
 
-        Task<int> Add(PositionInCompany progLang);
+        Task<IEnumerable<PositionInCompany>> ReadAll();
 
         Task<int> Update(PositionInCompany progLang);
 

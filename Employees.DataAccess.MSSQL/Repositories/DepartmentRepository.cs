@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,7 +24,7 @@ namespace Employees.DataAccess.MSSQL.Repositories
         }
         public async Task<int> Add(Department department)
         {
-            var newDep = _mapper.Map<Core.Department, Entities.Department>(department);
+            var newDep = _mapper.Map<Core.Entity.Department, Entities.Department>(department);
 
             await _context.Departments.AddAsync(newDep);
 
@@ -35,7 +36,7 @@ namespace Employees.DataAccess.MSSQL.Repositories
         public async Task<int> Delete(Department department)
         {
             var result =  _context.Departments.Remove(
-                 _mapper.Map<Core.Department, Entities.Department>(department)
+                 _mapper.Map<Core.Entity.Department, Entities.Department>(department)
                 );
             return await _context.SaveChangesAsync();
         }
@@ -48,12 +49,12 @@ namespace Employees.DataAccess.MSSQL.Repositories
                 .AsNoTracking()
                 .ToArrayAsync();
 
-            return _mapper.Map<Entities.Department[],Core.Department[]>(result);
+            return _mapper.Map<Entities.Department[],Core.Entity.Department[]>(result);
         }
 
         public async Task<int> Update(Department department)
         {
-            var dep = _mapper.Map<Core.Department, Entities.Department>(department);
+            var dep = _mapper.Map<Core.Entity.Department, Entities.Department>(department);
             _context.Departments.Update(dep);
             var result = await _context.SaveChangesAsync();
             return result;

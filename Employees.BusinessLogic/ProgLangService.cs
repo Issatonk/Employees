@@ -1,4 +1,5 @@
 ﻿using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Repositories;
 using Employees.Core.Services;
 using System;
@@ -7,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Employees.BusinessLogic
 {
-    public class ProgLangService : IProgLangService
+    public class PositionInCompanyService : IPositionInCompanyService
     {
-        private readonly IProgLangRepository _repository;
-        public ProgLangService(IProgLangRepository repository)
+        private readonly IPositionInCompanyRepository _repository;
+        public PositionInCompanyService(IPositionInCompanyRepository repository)
         {
             _repository = repository;
         }
-        public async Task<int> Create(ProgLang progLang)
+        public async Task<int> Create(PositionInCompany progLang)
         {
             if (progLang is null)
                 throw new ArgumentNullException();
-            if (string.IsNullOrWhiteSpace(progLang.Name))
+            if (string.IsNullOrWhiteSpace(progLang.PositionName))
                 throw new ArgumentNullException();
             var result = await _repository.Add(progLang);
 
@@ -26,7 +27,7 @@ namespace Employees.BusinessLogic
 
         }
 
-        public async Task<int> Delete(ProgLang progLang)
+        public async Task<int> Delete(PositionInCompany progLang)
         {
             if (progLang is null)
                 throw new ArgumentNullException();
@@ -36,16 +37,16 @@ namespace Employees.BusinessLogic
             return result;
         }
 
-        public async Task<IEnumerable<ProgLang>> ReadAll()
+        public async Task<IEnumerable<PositionInCompany>> ReadAll()
         {
             return await _repository.GetAll();
         }
 
-        public async Task<int> Update(ProgLang progLang)
+        public async Task<int> Update(PositionInCompany progLang)
         {
             if (progLang is null)
                 throw new ArgumentNullException();
-            if (string.IsNullOrWhiteSpace(progLang.Name))
+            if (string.IsNullOrWhiteSpace(progLang.PositionName))
                 throw new ArgumentNullException();
             var result = await _repository.Update(progLang);
 

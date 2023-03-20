@@ -1,4 +1,4 @@
-﻿namespace Employees.Core
+﻿namespace Employees.Core.Entity
 {
     public class Department
     {

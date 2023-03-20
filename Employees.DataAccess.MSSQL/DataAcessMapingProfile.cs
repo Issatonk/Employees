@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Employees.Core.Entity;
 
 namespace Employees.DataAccess.MSSQL
 {
@@ -6,15 +7,15 @@ namespace Employees.DataAccess.MSSQL
     {
         public DataAccessMappingProfile()
         {
-            CreateMap<Core.Department, Entities.Department>().ReverseMap();
+            CreateMap<Department, Entities.Department>().ReverseMap();
 
-            CreateMap<Core.User, Entities.User>().ReverseMap();
+            CreateMap<User, Entities.User>().ReverseMap();
 
-            CreateMap<Core.Employee, Entities.Employee>().ReverseMap();
+            CreateMap<Employee, Entities.Employee>().ReverseMap();
 
-            CreateMap<Entities.Employee, Core.Employee>();
+            CreateMap<Entities.Employee, Employee>();
 
-            CreateMap<Core.ProgLang, Entities.ProgLang>().ReverseMap();
+            CreateMap<PositionInCompany, Entities.PositionInCompany>().ReverseMap();
         }
     }
 }

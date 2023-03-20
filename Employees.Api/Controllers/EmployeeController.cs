@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Employees.Api.Contracts;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +62,7 @@ namespace Employees.Api.Controllers
                 Gender = (Core.Gender)(Gender)modifiedEmployee.Gender,
                 Name = modifiedEmployee.Name,
                 Surname = modifiedEmployee.Surname,
-                ProgLang = new ProgLang { Id = modifiedEmployee.ProgLangId }
+                Position = new PositionInCompany { Id = modifiedEmployee.ProgLangId }
             };
 
             var result = await _service.Update(employee);

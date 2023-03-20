@@ -1,5 +1,4 @@
 ﻿namespace Employees.DataAccess.MSSQL.Entities
-
 {
     public class User
     {
@@ -11,7 +10,5 @@
         public byte[] Salt { get; set; }
 
         public string Role { get; set; }
-
-        public Department Department { get; set; }
     }
 }

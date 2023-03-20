@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,8 +20,7 @@ namespace Employees.DataAccess.MSSQL.Repositories
         }
         public async Task<int> Add(User user)
         {
-            var newUser = _mapper.Map<Core.User, Entities.User>(user);
-            newUser.Department = await _context.Departments.FirstOrDefaultAsync(x => x.Id == user.Department.Id);
+            var newUser = _mapper.Map<User, Entities.User>(user);
             _context.Users.Add(newUser);
             return await _context.SaveChangesAsync();
         }
@@ -29,14 +28,13 @@ namespace Employees.DataAccess.MSSQL.Repositories
         {
             var user =  await _context
                 .Users
-                .Include(x=>x.Department)
                 .FirstOrDefaultAsync(x => x.Login == login);
-            return _mapper.Map<Entities.User, Core.User>(user);
+            return _mapper.Map<Entities.User, User>(user);
         }
 
         public async Task<int> Update(User user)
         {
-            _context.Users.Update(_mapper.Map<Core.User, Entities.User>(user));
+            _context.Users.Update(_mapper.Map<User, Entities.User>(user));
             return await _context.SaveChangesAsync();
             
         }

@@ -1,5 +1,6 @@
 ﻿using Employees.Api.Contracts;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Helpers;
 using Employees.Core.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -58,7 +59,6 @@ namespace Employees.Api.Controllers
                 Login = registration.Login,
                 Password = registration.Password,
                 Role = "Manager",
-                Department = new Department { Id = registration.DepartmentId }
             };
             await _service.Create(user);
             var identity = await _helper.GetIdentity(registration.Login, registration.Password);

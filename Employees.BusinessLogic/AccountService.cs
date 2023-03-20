@@ -1,4 +1,4 @@
-﻿using Employees.Core;
+﻿using Employees.Core.Entity;
 using Employees.Core.Helpers;
 using Employees.Core.Repositories;
 using Employees.Core.Services;

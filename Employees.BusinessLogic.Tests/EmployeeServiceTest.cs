@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Repositories;
 using Moq;
 using System;

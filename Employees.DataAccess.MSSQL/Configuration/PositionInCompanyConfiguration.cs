@@ -5,9 +5,9 @@ using System;
 
 namespace Employees.DataAccess.MSSQL.Configuration
 {
-    public class ProgLangConfiguration : IEntityTypeConfiguration<ProgLang>
+    public class PositionInCompanyConfiguration : IEntityTypeConfiguration<PositionInCompany>
     {
-        public void Configure(EntityTypeBuilder<ProgLang> builder)
+        public void Configure(EntityTypeBuilder<PositionInCompany> builder)
         {
             builder.HasKey(x => x.Id);
 

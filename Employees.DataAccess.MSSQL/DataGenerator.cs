@@ -10,7 +10,7 @@ namespace Employees.DataAccess.MSSQL
         private readonly EmployeesContext _context;
         private List<User> _users;
         private List<Department> _departments;
-        private List<ProgLang> _proglang;
+        private List<PositionInCompany> _proglang;
         private List<Employee> _employees;
 
         private readonly List<string> names = new List<string>()
@@ -102,37 +102,37 @@ namespace Employees.DataAccess.MSSQL
                     Name = "Dep10"
                 }
             };
-            _proglang = new List<ProgLang>()
+            _proglang = new List<PositionInCompany>()
             {
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "C#"
                 },
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "Java"
                 },
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "JavaScript"
                 },
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "Python"
                 },
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "SQL"
                 },
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "C++"
                 },
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "Kotlin"
                 },
-                new ProgLang
+                new PositionInCompany
                 {
                     Name = "PHP"
                 }
@@ -156,7 +156,7 @@ namespace Employees.DataAccess.MSSQL
                         Birthday = birthday,
                         Gender = (Gender)rnd.Next(0, 2),
                         Department = _departments[rnd.Next(_departments.Count)],
-                        ProgLang = _proglang[rnd.Next(_proglang.Count)]
+                        Position = _proglang[rnd.Next(_proglang.Count)]
                     });
                 }
             }

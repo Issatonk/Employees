@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Employees.Api.Contracts;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

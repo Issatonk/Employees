@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,9 +24,9 @@ namespace Employees.DataAccess.MSSQL.Repositories
         public async Task<int> Add(Employee employee)
         {
             
-            var newEmployee = _mapper.Map<Core.Employee, Entities.Employee>(employee);
+            var newEmployee = _mapper.Map<Core.Entity.Employee, Entities.Employee>(employee);
             newEmployee.Department = _context.Departments.FirstOrDefault(x=>x.Id == newEmployee.Department.Id);
-            newEmployee.ProgLang = _context.ProgLangs.FirstOrDefault(x => x.Id == newEmployee.ProgLang.Id);
+            newEmployee.Position = _context.PositionInCompany.FirstOrDefault(x => x.Id == newEmployee.Position.Id);
 
             await _context.Employees.AddAsync(newEmployee);
             await _context.SaveChangesAsync();
@@ -45,17 +46,17 @@ namespace Employees.DataAccess.MSSQL.Repositories
         {
             var employees = await _context.Employees
                 .Include(x=>x.Department)
-                .Include(x=>x.ProgLang)
+                .Include(x=>x.Position)
                 .ToArrayAsync();
-            return _mapper.Map<Entities.Employee[], Core.Employee[]>(employees);
+            return _mapper.Map<Entities.Employee[], Core.Entity.Employee[]>(employees);
         }
 
         public async Task<IEnumerable<Employee>> GetByDepartment(Department department)
         {
             var result = await _context.Employees.Where(x => x.Department.Id == department.Id)
-                .Include(x=>x.ProgLang)
+                .Include(x=>x.Position)
                 .ToArrayAsync();
-            return _mapper.Map<Entities.Employee[], Core.Employee[]>(result);
+            return _mapper.Map<Entities.Employee[], Core.Entity.Employee[]>(result);
         }
 
         public async Task<(IEnumerable<Employee>, int numberOfPages)> GetPage(int page, int size, int? departmentId)
@@ -69,7 +70,7 @@ namespace Employees.DataAccess.MSSQL.Repositories
                 .Skip((page - 1) * size)
                 .Take(size)
                 .Include(x => x.Department)
-                .Include(x => x.ProgLang)
+                .Include(x => x.Position)
                 .ToArrayAsync();
             int numberOfPages = 0;
             if (departmentId is null)
@@ -82,17 +83,17 @@ namespace Employees.DataAccess.MSSQL.Repositories
             }
 
             return (
-                _mapper.Map<Entities.Employee[], Core.Employee[]>(employees), 
+                _mapper.Map<Entities.Employee[], Core.Entity.Employee[]>(employees), 
                 numberOfPages
                 );
         }
 
         public async Task<int> Update(Employee employee)
         {
-            var modifiedEmployee = _mapper.Map<Core.Employee, Entities.Employee>(employee);
+            var modifiedEmployee = _mapper.Map<Core.Entity.Employee, Entities.Employee>(employee);
 
             modifiedEmployee.Department = _context.Departments.FirstOrDefault(x => x.Id == employee.Department.Id);
-            modifiedEmployee.ProgLang = _context.ProgLangs.FirstOrDefault(x => x.Id == employee.ProgLang.Id);
+            modifiedEmployee.Position = _context.PositionInCompany.FirstOrDefault(x => x.Id == employee.Position.Id);
 
             _context.Employees.Update(modifiedEmployee);
             await _context.SaveChangesAsync();

@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Repositories;
 using Moq;
 using System;
@@ -13,15 +14,15 @@ namespace Employees.BusinessLogic.Tests
 {
     public class ProgLangServiceTests
     {
-        private readonly Mock<IProgLangRepository> _progLangRepositoryMock;
+        private readonly Mock<IPositionInCompanyRepository> _progLangRepositoryMock;
 
-        private readonly ProgLangService _service;
+        private readonly PositionInCompanyService _service;
 
         
         public ProgLangServiceTests()
         {
-            _progLangRepositoryMock = new Mock<IProgLangRepository>();
-            _service = new ProgLangService(_progLangRepositoryMock.Object);
+            _progLangRepositoryMock = new Mock<IPositionInCompanyRepository>();
+            _service = new PositionInCompanyService(_progLangRepositoryMock.Object);
         }
 
         [Fact]
@@ -30,7 +31,7 @@ namespace Employees.BusinessLogic.Tests
             //arrange
             Fixture fixture = new Fixture();
 
-            var progLang = fixture.Create<ProgLang>();
+            var progLang = fixture.Create<PositionInCompany>();
             //act
             var result = _service.Create(progLang);
 
@@ -42,7 +43,7 @@ namespace Employees.BusinessLogic.Tests
         public void Create_ProgLangIsNull_ShouldThrowArgumentNullException()
         {
             //arrange
-            ProgLang progLang = null;
+            PositionInCompany progLang = null;
             //act
             var result = _service.Create(progLang);
 
@@ -58,7 +59,7 @@ namespace Employees.BusinessLogic.Tests
         public void Create_ProgLangIsInvalid_ShouldThrowArgumentException(string name)
         {
             //arrange
-            var progLang = new ProgLang { Name = name};
+            var progLang = new PositionInCompany { PositionName = name};
             //act
             var result = _service.Create(progLang);
 

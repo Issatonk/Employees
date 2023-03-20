@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Employees.Core.Entity;
 
 namespace Employees.Core.Repositories
 {

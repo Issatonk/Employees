@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -8,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace Employees.DataAccess.MSSQL.Repositories
 {
-    public class ProgLangRepository : IProgLangRepository
+    public class PositionInCompanyRepository : IPositionInCompanyRepository
     {
         private readonly EmployeesContext _context;
         private readonly IMapper _mapper;
 
-        public ProgLangRepository(EmployeesContext context, IMapper mapper)
+        public PositionInCompanyRepository(EmployeesContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<int> Add(ProgLang progLang)
+        public async Task<int> Add(PositionInCompany progLang)
         {
-            var newProgLang = new Entities.ProgLang
+            var newProgLang = new Entities.PositionInCompany
             {
-                Name = progLang.Name
+                Name = progLang.PositionName
             };
             await _context.AddAsync(newProgLang);
             await _context.SaveChangesAsync();
@@ -31,23 +32,23 @@ namespace Employees.DataAccess.MSSQL.Repositories
             
         }
 
-        public async Task<int> Delete(ProgLang progLang)
+        public async Task<int> Delete(PositionInCompany progLang)
         {
-            _context.ProgLangs.Remove(new Entities.ProgLang { Id = progLang.Id });
+            _context.PositionInCompany.Remove(new Entities.PositionInCompany { Id = progLang.Id });
             var result = await _context.SaveChangesAsync();
             return result;
         }
 
-        public async Task<IEnumerable<ProgLang>> GetAll()
+        public async Task<IEnumerable<PositionInCompany>> GetAll()
         {
             var progLangs = 
-                await _context.ProgLangs.ToArrayAsync();
-            return _mapper.Map<Entities.ProgLang[], Core.ProgLang[]>(progLangs);
+                await _context.PositionInCompany.ToArrayAsync();
+            return _mapper.Map<Entities.PositionInCompany[], Core.Entity.PositionInCompany[]>(progLangs);
         }
 
-        public async Task<int> Update(ProgLang progLang)
+        public async Task<int> Update(PositionInCompany progLang)
         {
-            _context.ProgLangs.Update(_mapper.Map<Core.ProgLang, Entities.ProgLang>(progLang));
+            _context.PositionInCompany.Update(_mapper.Map<Core.Entity.PositionInCompany, Entities.PositionInCompany>(progLang));
             var result = await _context.SaveChangesAsync();
             return result;
         }

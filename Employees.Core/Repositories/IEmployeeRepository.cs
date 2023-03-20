@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Employees.Core.Entity;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Employees.Core.Repositories

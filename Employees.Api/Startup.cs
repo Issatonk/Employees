@@ -96,8 +96,8 @@ namespace Employees.Api
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IDepartmentService, DepartmentService>();
            
-            services.AddScoped<IProgLangRepository, ProgLangRepository>();
-            services.AddScoped<IProgLangService, ProgLangService>();
+            services.AddScoped<IPositionInCompanyRepository, PositionInCompanyRepository>();
+            services.AddScoped<IPositionInCompanyService, PositionInCompanyService>();
             
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();

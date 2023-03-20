@@ -11,11 +11,11 @@ namespace Employees.DataAccess.MSSQL
         {
 
         }
-        public DbSet<Entities.Department> Departments { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
-        public DbSet<Entities.Employee> Employees { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<Entities.ProgLang> ProgLangs { get; set; }
+        public DbSet<PositionInCompany> PositionInCompany { get; set; }
 
         public DbSet<User> Users { get; set; }
 
@@ -26,7 +26,7 @@ namespace Employees.DataAccess.MSSQL
 
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
-            modelBuilder.ApplyConfiguration(new ProgLangConfiguration());
+            modelBuilder.ApplyConfiguration(new PositionInCompanyConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Security;
 
-namespace Employees.Core
+namespace Employees.Core.Entity
 {
     public class Employee
     {
@@ -15,7 +16,10 @@ namespace Employees.Core
 
         public Department Department { get; set; }
 
-        public ProgLang ProgLang { get; set; }
-    }
+        public PositionInCompany Position { get; set; }
 
+        public Contacts Contacts { get; set; }
+
+        public Salary Salary { get; set; }
+    }
 }

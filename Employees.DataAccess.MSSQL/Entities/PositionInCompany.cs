@@ -2,7 +2,7 @@
 
 namespace Employees.DataAccess.MSSQL.Entities
 {
-    public class ProgLang
+    public class PositionInCompany
     {
         public int Id { get; set; }
         public string Name { get; set; }

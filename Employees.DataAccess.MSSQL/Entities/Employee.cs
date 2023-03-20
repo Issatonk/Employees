@@ -17,7 +17,11 @@ namespace Employees.DataAccess.MSSQL.Entities
 
         public Department Department { get; set; }
 
-        public ProgLang ProgLang { get; set; }
+        public PositionInCompany Position { get; set; }
+
+        public Contacts Contacts { get; set; }
+
+        public Salary Salary { get; set; }
     }
 }
 

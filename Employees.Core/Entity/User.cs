@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Employees.Core
+namespace Employees.Core.Entity
 {
     public class User
     {
@@ -13,8 +13,6 @@ namespace Employees.Core
         public byte[] Salt { get; set; }
 
         public string Role { get; set; }
-
-        public Department Department { get; set; }
     }
 
 }

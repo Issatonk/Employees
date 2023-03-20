@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Employees.Core.Entity;
 
 namespace Employees.Core.Helpers
 {
@@ -31,7 +32,6 @@ namespace Employees.Core.Helpers
                     new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
                     new Claim(ClaimsIdentity.DefaultRoleClaimType, person.Role),
                 };
-                if (person.Role != "Admin") claims.Add(new Claim(ClaimTypes.UserData, person.Department.Id.ToString()));
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
                     ClaimsIdentity.DefaultRoleClaimType);

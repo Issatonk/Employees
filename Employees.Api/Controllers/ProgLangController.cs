@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Employees.Api.Contracts;
 using Employees.Core;
+using Employees.Core.Entity;
 using Employees.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,10 @@ namespace Employees.Api.Controllers
     [ApiController]
     public class ProgLangController : ControllerBase
     {
-        private readonly IProgLangService _service;
+        private readonly IPositionInCompanyService _service;
         private readonly IMapper _mapper;
 
-        public ProgLangController(IProgLangService service, IMapper mapper)
+        public ProgLangController(IPositionInCompanyService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
@@ -24,7 +25,7 @@ namespace Employees.Api.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(NewProgLang newProgLang)
         {
-            var progLang = _mapper.Map<NewProgLang, ProgLang>(newProgLang);
+            var progLang = _mapper.Map<NewProgLang, PositionInCompany>(newProgLang);
 
             var result = await _service.Create(progLang);
 
@@ -41,7 +42,7 @@ namespace Employees.Api.Controllers
 
         [HttpPut]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Update(ProgLang progLang)
+        public async Task<IActionResult> Update(PositionInCompany progLang)
         {
             var result = await _service.Update(progLang);
             return Ok(result);
@@ -50,7 +51,7 @@ namespace Employees.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int proglangId)
         {
-            var result = await _service.Delete(new ProgLang { Id = proglangId });
+            var result = await _service.Delete(new PositionInCompany { Id = proglangId });
             return Ok(result);
         }
     }
