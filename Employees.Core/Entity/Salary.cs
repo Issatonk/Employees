@@ -8,6 +8,8 @@ namespace Employees.Core.Entity
 
         public decimal SalaryValue { get; set; }
 
+        public int Hours { get; set; }
+
         public DateTime DateSalary { get; set; }
     }
 }

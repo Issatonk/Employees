@@ -1,8 +1,8 @@
 ﻿using Employees.Core;
 
-namespace Employees.Api.Contracts
+namespace Contracts.Requests
 {
-    public class RegistrationModel
+    public class RegistrationRequest
     {
         public string Login { get; set; }
         public string Password { get; set; }

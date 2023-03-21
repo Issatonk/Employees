@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Employees.Api.Contracts;
+using Contracts.Requests;
 using Employees.Core;
 using Employees.Core.Entity;
 using Employees.Core.Services;
@@ -25,9 +25,9 @@ namespace Employees.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create([FromBody]NewEmployee newEmployee)
+        public async Task<IActionResult> Create([FromBody]CreateEmployeeRequest newEmployee)
         {
-            var employee = _mapper.Map<NewEmployee,Employee>(newEmployee);
+            var employee = _mapper.Map<Employee>(newEmployee);
             var result = await  _service.Create(employee);
 
             return Ok(result);
@@ -52,18 +52,10 @@ namespace Employees.Api.Controllers
 
         [HttpPut]
         [Authorize]
-        public async Task<IActionResult> Update([FromBody] ModifiedEmployee modifiedEmployee)
+        public async Task<IActionResult> Update([FromBody] UpdateEmployeeRequest employeeRequest)
         {
-            var employee = new Employee
-            {
-                Id = modifiedEmployee.Id,
-                Birthday = modifiedEmployee.Birthday,
-                Department = new Department { Id = modifiedEmployee.DepartmentId },
-                Gender = (Core.Gender)(Gender)modifiedEmployee.Gender,
-                Name = modifiedEmployee.Name,
-                Surname = modifiedEmployee.Surname,
-                Position = new PositionInCompany { Id = modifiedEmployee.ProgLangId }
-            };
+
+            var employee = _mapper.Map<Employee>(employeeRequest);
 
             var result = await _service.Update(employee);
 

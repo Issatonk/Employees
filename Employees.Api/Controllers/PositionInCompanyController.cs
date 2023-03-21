@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Employees.Api.Contracts;
+using Contracts.Requests;
 using Employees.Core;
 using Employees.Core.Entity;
 using Employees.Core.Services;
@@ -11,21 +11,21 @@ namespace Employees.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgLangController : ControllerBase
+    public class PositionInCompanyController : ControllerBase
     {
         private readonly IPositionInCompanyService _service;
         private readonly IMapper _mapper;
 
-        public ProgLangController(IPositionInCompanyService service, IMapper mapper)
+        public PositionInCompanyController(IPositionInCompanyService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(NewProgLang newProgLang)
+        public async Task<IActionResult> Create(CreatePositionInCompanyRequest position)
         {
-            var progLang = _mapper.Map<NewProgLang, PositionInCompany>(newProgLang);
+            var progLang = _mapper.Map<CreatePositionInCompanyRequest, PositionInCompany>(position);
 
             var result = await _service.Create(progLang);
 

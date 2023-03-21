@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contracts.Requests;
 using Employees.Core;
 using Employees.Core.Entity;
 
@@ -8,13 +9,17 @@ namespace Employees.Api
     {
         public ApiMappingProfile()
         {
-            CreateMap<Contracts.NewDepartment, Core.Entity.Department>();
+            CreateMap<CreateDepartmentRequest, Department>();
             
-            CreateMap<Contracts.NewEmployee, Core.Entity.Employee>()
+            CreateMap<CreateEmployeeRequest, Employee>()
                 .ForMember(x=>x.Department, opt=>opt.MapFrom(src=>new Department { Id = src.DepartmentId }))
-                .ForMember(x=>x.Position, opt=>opt.MapFrom(src=>new PositionInCompany { Id= src.ProgLangId}));
+                .ForMember(x=>x.Position, opt=>opt.MapFrom(src=>new PositionInCompany { Id= src.PositionInCompanyId}));
 
-            CreateMap<Contracts.NewProgLang, Core.Entity.PositionInCompany>();
+            CreateMap<CreateEmployeeRequest, PositionInCompany>();
+
+            CreateMap<UpdateEmployeeRequest, Employee>()
+                .ForMember(x => x.Department, opt => opt.MapFrom(src => new Department { Id = src.DepartmentId }))
+                .ForMember(x => x.Position, opt => opt.MapFrom(src => new PositionInCompany { Id = src.PositionInCompanyId }));
         }
     }
 }

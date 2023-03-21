@@ -1,6 +1,6 @@
-﻿namespace Employees.Api.Contracts
+﻿namespace Contracts.Requests
 {
-    public class NewDepartment
+    public class CreateDepartmentRequest
     {
         public string Name { get; set; }
 

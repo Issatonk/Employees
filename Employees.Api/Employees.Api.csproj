@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Employees.BusinessLogic\Employees.BusinessLogic.csproj" />
     <ProjectReference Include="..\Employees.Core\Employees.Core.csproj" />
     <ProjectReference Include="..\Employees.DataAccess.MSSQL\Employees.DataAccess.MSSQL.csproj" />

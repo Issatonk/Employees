@@ -17,6 +17,10 @@ namespace Employees.DataAccess.MSSQL
 
         public DbSet<PositionInCompany> PositionInCompany { get; set; }
 
+        public DbSet<Contacts> Contacts { get; set; }
+
+        public DbSet<Salary> Salary { get; set; }
+
         public DbSet<User> Users { get; set; }
 
 

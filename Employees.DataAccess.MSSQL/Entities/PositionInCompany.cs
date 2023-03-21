@@ -7,6 +7,8 @@ namespace Employees.DataAccess.MSSQL.Entities
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public decimal SalaryPerHours { get; set; }
+
         public List<Employee> Employees { get; set; }
     }
 }

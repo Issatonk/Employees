@@ -22,6 +22,11 @@ namespace Employees.BusinessLogic
                 throw new ArgumentNullException();
             if(employee.Name == string.Empty || employee.Surname == string.Empty)
                 throw new ArgumentException();
+            if(employee.Contacts== null)
+            {
+                throw new ArgumentException();
+            }
+            if(employee.)
             await _repository.Add(employee);
 
             return employee.Id;

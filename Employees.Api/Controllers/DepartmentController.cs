@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Employees.Api.Contracts;
+using Contracts.Requests;
 using Employees.Core;
 using Employees.Core.Entity;
 using Employees.Core.Services;
@@ -24,10 +24,9 @@ namespace Employees.Api.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(NewDepartment newDepartment)
+        public async Task<IActionResult> Create(CreateDepartmentRequest newDepartment)
         {
-
-            Department department = _mapper.Map<NewDepartment, Department>(newDepartment);
+            Department department = _mapper.Map<Department>(newDepartment);
 
             await _departmentService.Create(department);
 

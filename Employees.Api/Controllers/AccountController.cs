@@ -1,4 +1,5 @@
-﻿using Employees.Api.Contracts;
+﻿using Contracts.Responses;
+using Contracts.Requests;
 using Employees.Core;
 using Employees.Core.Entity;
 using Employees.Core.Helpers;
@@ -33,26 +34,26 @@ namespace Employees.Api.Controllers
         }
 
         [HttpPost("/token")]
-        public async Task<IActionResult> Token(LoginModel login)
+        public async Task<IActionResult> Token(LoginRequest login)
         {
             var identity = await _helper.GetIdentity(login.Login, login.Password);
             if (identity == null)
             {
                 return BadRequest(new { errorText = "Invalid username or password." });
             }
-            var response = new
+            var response = new TokenResponse
             {
-                access_token = _helper.GenerateJwt(identity),
-                username = identity.Name,
-                role = identity.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value,
-                departmentId = identity.Claims.FirstOrDefault(x=>x.Type == ClaimTypes.UserData)?.Value
+                AccessToken = _helper.GenerateJwt(identity),
+                Username = identity.Name,
+                Role = identity.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value,
+                Department = identity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.UserData)?.Value
             };
 
             return Ok(response);
         }
 
         [HttpPost("/registration")]
-        public async Task<IActionResult> Registration(RegistrationModel registration)
+        public async Task<IActionResult> Registration(RegistrationRequest registration)
         {
             User user = new User
             {
@@ -62,12 +63,12 @@ namespace Employees.Api.Controllers
             };
             await _service.Create(user);
             var identity = await _helper.GetIdentity(registration.Login, registration.Password);
-            var response = new
+            var response = new TokenResponse
             {
-                access_token = _helper.GenerateJwt(identity),
-                username = identity.Name,
-                role = identity.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value,
-                departmentId = identity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.UserData)?.Value
+                AccessToken = _helper.GenerateJwt(identity),
+                Username = identity.Name,
+                Role = identity.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value,
+                Department = identity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.UserData)?.Value
             };
             return Ok(response);
         }
@@ -84,7 +85,6 @@ namespace Employees.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> ChangePassword(string login, string password)
         {
-
             await _service.Update(login, password);
             return Ok();
         }

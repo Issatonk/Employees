@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Employees.Api.Contracts
+namespace Contracts.Requests
 {
-    public class ModifiedEmployee
+    public class UpdateEmployeeRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,6 +16,6 @@ namespace Employees.Api.Contracts
 
         public int DepartmentId { get; set; }
 
-        public int ProgLangId { get; set; }
+        public int PositionInCompanyId { get; set; }
     }
 }

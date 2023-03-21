@@ -53,4 +53,18 @@ namespace Employees.BusinessLogic
             return result;
         }
     }
+
+    public class Contacts : IContactsService
+    {
+        private readonly IContactsRepository _repository;
+        public Contacts(IContactsRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public Task<int> Update(Core.Entity.Contacts contacts)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -6,6 +6,7 @@ namespace Employees.DataAccess.MSSQL.Entities
     {
         public Employee Id { get; set; }
 
+        public int Hours { get; set; }
         public decimal SalaryValue { get; set; }
 
         public DateTime DateSalary { get; set; }

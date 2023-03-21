@@ -1,6 +1,6 @@
-﻿namespace Employees.Api.Contracts
+﻿namespace Contracts.Requests
 {
-    public class LoginModel
+    public class LoginRequest
     {
         public string Login { get; set; }
         public string Password { get; set; }

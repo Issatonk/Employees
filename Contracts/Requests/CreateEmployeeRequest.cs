@@ -1,11 +1,11 @@
-﻿using Employees.Core;
+﻿using Employees.Core.Entity;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Employees.Api.Contracts
+namespace Contracts.Requests
 {
 
-    public class NewEmployee
+    public class CreateEmployeeRequest
     {
         public string Name { get; set; }
 
@@ -17,6 +17,10 @@ namespace Employees.Api.Contracts
 
         public int DepartmentId { get; set; }
 
-        public int ProgLangId { get; set; }
+        public int PositionInCompanyId { get; set; }
+
+        public Contacts Contacts { get; set; }
+
+
     }
 }
